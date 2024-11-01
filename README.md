@@ -1,3 +1,5 @@
+![Alt Text](images/NN.jpg)
+
 1.1 State of the Art
 
 Artificial intelligence (AI) in computer science focuses on creating systems and algorithms to 
@@ -71,7 +73,7 @@ high accuracy but is generally slower than YOLO models due to its more complex a
 1.2.4 Necessary notions and concepts for using YOLOv5
 
 YOLOv5 is designed to be extremely fast, making it ideal for processing large datasets quickly. 
-This is particularly advantageous when real-time detection is required or when working with largescale datasets where training time is a critical factor. The single-stage architecture of this model 
+This is particularly advantageous when real-time detection is required or when working with large scale datasets where training time is a critical factor. The single-stage architecture of this model 
 allows for end-to-end training, simplifying the process and reducing the complexity compared to 
 Faster R-CNN, which involves multiple stages.
 
@@ -181,3 +183,93 @@ utilized by integrating TensorBoard and running the training process from the An
 1.3.4 Visualization of the model's performance metrics
 
 The performance metrics of YOLOv5 trained on the DatasetNr1 are represented in the Table 2.
+
+![Alt Text](images/Table2.jfif)
+
+1.3.5 Model training and evaluation with DatasetNr2
+
+In the study, two datasets were used, with the first being unsuitable for the initial goal of 
+generating NET files for LTspice from hand-sketched electronic circuit images. Consequently, the 
+YOLOv5 model was also trained on DatasetNr2, which includes 2,703 images of hand-drawn 
+electronic circuits. Like the first dataset, DatasetNr2 is structured into train, valid, and test 
+subdirectories for training, validation, and model evaluation. The performance metrics of YOLOv5 
+trained on the DatasetNr1 are represented in the Table 4.
+
+![Alt Text](images/Table4.jpeg)
+
+The results from training with DatasetNr1 and DatasetNr2 were compared, and it was decided 
+to use the model trained with DatasetNr2 in the application, as it demonstrated better performance 
+metrics. The final model utilized the best.pt file, which contains the neural weights obtained from 
+the training with DatasetNr2.
+
+1.3.6 Generating the LTspice netlist
+
+In the project YoloV5Train, a script named generate_netlist.py was created to generate LTspice 
+netlists for images included in DatasetNr2. Using the predictions from the YOLO model, functions 
+for recognition, classification, and mapping of electronic components were integrated to generate 
+a NET file compatible with LTspice. The script is fully functional and adheres to the netlisting 
+rules of LTspice.
+
+1.4 Experimental Results
+
+The experimental results obtained from testing the YOLOv5 model for generating LTspice 
+netlist files were presented using two distinct datasets, DatasetNr1 and DatasetNr2. These results 
+included various metrics and visualizations, such as confusion matrices, precision-confidence
+curves, recall-confidence curves, class distribution and bounding box analysis which provided 
+insights into the model's performance in detecting and classifying electronic circuit components 
+from images.
+
+1.4.1 Evaluation of the results for DatasetNr1
+
+The model trained on DatasetNr1 demonstrated varying performance across different classes 
+of electronic components. Overall, the model achieved an average precision of 95.7% and a recall 
+of 82.8%, with a mAP_0.5 of 82.6% and a mAP_0.5:0.95 of 58.0%. 
+However, the model struggled with the ARR class (voltage drop indicator), where it failed to 
+detect any instances, likely due to the limited representation of this class in the validation set. 
+Despite this, the model showed excellent performance for other classes such as ACV (AC voltage 
+source), L (inductor), and R (resistor), with near-perfect precision and recall, indicating its strong 
+ability to accurately recognize components in diverse contexts. Overall, while the model shows 
+promise, it is not fully optimized for the application due to its inconsistencies with certain classes.
+The confusion matrix for the model trained with DatasetNr1 is represented in Figure 11.
+
+![Alt Text](images/MatrixSET1.jpeg)
+
+1.4.2 Evaluation of the results for DatasetNr2
+
+The YOLOv5 model trained on DatasetNr2 demonstrated strong performance, achieving an 
+mAP_0.5 of 96.5%, indicating high precision in detecting electronic circuit components. While 
+most classes performed well, the diode class exhibited slightly lower accuracy, likely due to 
+dataset limitations. Recommendations for improving the model include rebalancing the dataset, 
+enhancing labeling, and incorporating SPICE model names and component specifications to 
+further automate the application. The confusion matrix for the model trained with DatasetNr2 is 
+represented in Figure 17.
+
+![Alt Text](images/MatrixSET2.jpeg)
+
+1.4.3 The functionality of the generate_netlist.py script
+
+To validate the LTspice netlist generation script, a set of test images from the validation subset 
+of DatasetNr2 was used. The script accurately maps electronic components detected by YOLOv5 
+into LTspice-compatible NET files, adhering to netlisting rules. 
+Additionally, the script includes functionality for assigning standard component values, 
+enabling automatic DC operating point simulations in LTspice. This functionality was further 
+enhanced by adding directives and specifying library paths to ensure accurate simulation results.
+An example of the functionality of the generate_netlist.py file can be seen in Figures 25. and 26.
+
+![Alt Text](images/Test2.jpeg)
+
+1.5 Conclusions
+
+The work presents a solution for recognizing electronic components in circuits using CNNs, 
+aiming to automate and speed up circuit design and simulation. The application generates netlist 
+files directly from images, reducing manual effort.YOLOv5 was employed to identify components 
+and their positions within circuits. The model was trained and evaluated using precision, recall, and 
+mAP metrics, with Python used for implementation and LTspice for netlist generation.
+The prototype struggles with distinguishing similar components and recognizing terminals, 
+which impacts simulation realism and accuracy.Future improvements could include adapting the 
+model for new circuit types, enhancing terminal recognition, and integrating detailed LTspice data 
+for better netlist generation.
+
+
+
+

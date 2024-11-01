@@ -1,5 +1,13 @@
 ![Alt Text](images/NN.jpg)
 
+Bachelor's Thesis : "Generation of SPICE netlist files using neural networks"  
+University: Technical University of Cluj-Napoca  
+Program: Bachelor's Degree in Electronics and Telecommunications  
+Author: Daniil Zabunov  
+Year: 2024  
+
+English Summary of the Project
+
 1.1 State of the Art
 
 Artificial intelligence (AI) in computer science focuses on creating systems and algorithms to 
@@ -255,6 +263,8 @@ Additionally, the script includes functionality for assigning standard component
 enabling automatic DC operating point simulations in LTspice. This functionality was further 
 enhanced by adding directives and specifying library paths to ensure accurate simulation results.
 An example of the functionality of the generate_netlist.py file can be seen in Figures 25. and 26.
+
+![Alt Text](images/PYterminal.jfif)
 
 ![Alt Text](images/Test2.jpeg)
 

@@ -1,4 +1,4 @@
-![Alt Text](images/NN.jpg)
+![Demo GIF](images/NN.gif)
 
 Bachelor's Thesis : "Generation of SPICE netlist files using neural networks"  
 University: Technical University of Cluj-Napoca  

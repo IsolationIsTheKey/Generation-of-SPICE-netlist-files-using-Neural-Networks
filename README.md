@@ -69,7 +69,7 @@ regression problem, directly predicting bounding boxes and class probabilities f
 single network pass. This architecture makes YOLOv5 incredibly fast and suitable for real-time 
 applications.
 
-1.2.2 Faster R-CNN model
+### 1.2.2 Faster R-CNN model
 
 Faster R-CNN (Region-based Convolutional Neural Networks) is a two-stage object detection 
 framework. It first generates region proposals using a Region Proposal Network (RPN) and then 
